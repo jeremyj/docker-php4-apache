@@ -24,21 +24,12 @@ RUN apt-get -yq install \
 	php4-pear \
 	php5-common 
 
-COPY DB_Pager-0.7.tgz DB_Pager-0.7.tgz
-COPY HTML_Common-1.2.5.tgz HTML_Common-1.2.5.tgz
-COPY Pager_Sliding-1.6.tgz Pager_Sliding-1.6.tgz
-COPY XML_Parser-1.3.4.tgz XML_Parser-1.3.4.tgz
-COPY XML_Serializer-0.20.2.tgz XML_Serializer-0.20.2.tgz
-COPY XML_Util-1.2.1.tgz XML_Util-1.2.1.tgz
-
-RUN pear install DB_Pager-0.7.tgz
-RUN pear install HTML_Common-1.2.5.tgz
-RUN pear install Pager_Sliding-1.6.tgz
-RUN pear install XML_Util-1.2.1.tgz
+COPY pear-package.list pear-package.list
+RUN cat pear-package.list | while read file; do wget $file ;done
 RUN pear install XML_Parser-1.3.4.tgz
-RUN pear install XML_Serializer-0.20.2.tgz
+RUN for i in `ls -r *.tgz | grep -v XML_Parser`; do pear install $i && rm -f $i; done
 
-RUN rm DB_Pager-0.7.tgz HTML_Common-1.2.5.tgz Pager_Sliding-1.6.tgz XML_Util-1.2.1.tgz XML_Parser-1.3.4.tgz XML_Serializer-0.20.2.tgz 
+RUN rm *.tgz
 
 RUN a2enmod rewrite
 
