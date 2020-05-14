@@ -12,8 +12,6 @@ RUN apt-get -yq install \
 	php-net-socket \
 	php-pear \
 	php-xml-parser \
-	php4-cli \
-	php4-common \
 	php4-curl \
 	php4-domxml \
 	php4-gd \
@@ -21,9 +19,8 @@ RUN apt-get -yq install \
 	php4-ldap \
 	php4-mhash \
 	php4-mysql \
-	php4-pear \
-	php5-common 
-
+	php4-pear 
+	
 COPY DB_Pager-0.7.tgz DB_Pager-0.7.tgz
 COPY HTML_Common-1.2.5.tgz HTML_Common-1.2.5.tgz
 COPY Pager_Sliding-1.6.tgz Pager_Sliding-1.6.tgz
