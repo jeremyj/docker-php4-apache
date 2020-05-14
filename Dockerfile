@@ -1,4 +1,5 @@
 FROM xaossystems/debian-etch
+LABEL LABEL maintainer="305674+jeremyj@users.noreply.github.com"
 
 RUN apt-get update
 RUN export DEBIAN_FRONTEND=noninteractive
